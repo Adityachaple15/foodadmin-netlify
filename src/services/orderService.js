@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://natural-flow-production.up.railway.app/api/orders";
+const API_URL = "http://localhost:8081/api/orders";
 
 export const fetchAllOrders = async () => {
     try {
@@ -15,7 +15,7 @@ export const fetchAllOrders = async () => {
 export const updateOrderStatus = async (orderId, status) => {
     try {
         const response = await axios.patch(
-            `${API_URL}/status/${orderId}?status=${status}`
+            `${API_URL}/status/${orderId}?status=${encodeURIComponent(status)}`
         );
         return response.status === 200;
     } catch (error) {
